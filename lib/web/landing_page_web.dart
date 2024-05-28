@@ -12,27 +12,42 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingPageWebState extends State<LandingPageWeb> {
-  launchUrl(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    launchUrl(String url) async {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
+    List<TextStyle> textStyles = [
+      TextStyle(fontSize: 30, color: Colors.blue),
+      TextStyle(fontSize: 30, color: Colors.white),
+      TextStyle(fontSize: 30, color: Colors.green),
+    ];
+    List<String> animatedTexts = [
+      "Flutter Developer",
+      "Web Developer",
+      "Mobile Developer",
+    ];
+    List<TextStyle> independentTextStyles = [
+      TextStyle(fontSize: 30, color: Colors.purpleAccent),
+      TextStyle(fontSize: 30, color: Colors.purpleAccent),
+      TextStyle(fontSize: 30, color: Colors.orange),
+    ];
     var heightDevice = MediaQuery.of(context).size.height;
     var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: Drawer(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black87,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
               radius: 72,
-              backgroundColor: Colors.tealAccent,
+              backgroundColor: Colors.deepOrangeAccent,
               child: CircleAvatar(
                 radius: 70.0,
                 backgroundColor: Colors.white,
@@ -43,38 +58,30 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             SizedBox(
               height: 15.0,
             ),
-            Text('Tamim', style: TextStyle(fontSize: 30.0)),
+            Text('Tamim GOLAM ',
+                style: TextStyle(fontSize: 30.0, color: Colors.white)),
             SizedBox(height: 15.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
                   icon: SvgPicture.asset(
-                    "assets/instagram2.svg",
-                    color: Colors.black,
+                    "assets/linkedin.svg",
                     width: 35.0,
                   ),
                   onPressed: () {
-                    launchUrl('https://www.instagram.com/');
+                    launchUrl(
+                        'https://www.linkedin.com/in/tamim-golam-16ab1322a/');
                   },
                 ),
                 IconButton(
                     icon: SvgPicture.asset(
-                      "assets/twitter.svg",
-                      color: Colors.black,
-                      width: 35.0,
-                    ),
-                    onPressed: () {
-                      launchUrl('www.linkedin.com');
-                    }),
-                IconButton(
-                    icon: SvgPicture.asset(
                       "assets/github.svg",
-                      color: Colors.black,
+                      color: Colors.white,
                       width: 35.0,
                     ),
                     onPressed: () {
-                      launchUrl('www.github.com');
+                      launchUrl('https://github.com/Tamim94');
                     }),
               ],
             ),
@@ -83,9 +90,9 @@ class _LandingPageWebState extends State<LandingPageWeb> {
       ),
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black87,
         elevation: 0.0,
-        iconTheme: IconThemeData(size: 25.6, color: Colors.black),
+        iconTheme: IconThemeData(size: 25.6, color: Colors.white),
         title: Row(
           children: [
             Spacer(flex: 3),
@@ -121,114 +128,256 @@ class _LandingPageWebState extends State<LandingPageWeb> {
         children: [
           //Page one
           Container(
-            height: heightDevice - 56,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.tealAccent,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20.0),
-                            topRight: Radius.circular(20.0),
-                            bottomRight: Radius.circular(20.0),
-                          )),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-                      child: Text('yoooooo', style: TextStyle(fontSize: 15)),
-                    ),
-                    SizedBox(height: 15.0),
-                    Text('Tamim Golam ', style: TextStyle(fontSize: 65)),
-                    Text('Etudiant en informatique  ',
-                        style: TextStyle(fontSize: 30)),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Icon(Icons.mail),
-                        SizedBox(width: 20),
-                        Text('golam.tamim94@gmail.com',
-                            style: TextStyle(fontSize: 15))
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Icon(Icons.phone_android_sharp),
-                        SizedBox(width: 20),
-                        Text('+33 0699341308', style: TextStyle(fontSize: 15))
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Icon(Icons.info_outline),
-                        SizedBox(width: 20),
-                        Text('golam.tamim94@gmail.com',
-                            style: TextStyle(fontSize: 15))
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Icon(Icons.school_outlined),
-                        SizedBox(width: 20),
-                        Text('Estiam Paris', style: TextStyle(fontSize: 15))
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Icon(Icons.home),
-                        SizedBox(width: 20),
-                        Text('Rosny-Sous-Bois', style: TextStyle(fontSize: 15))
-                      ],
-                    ),
-                  ],
+            height: heightDevice - 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/blacksandbyadrien-olichon.jpg'),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.5), // Adjust opacity as needed
+                  BlendMode.darken,
                 ),
-                CircleAvatar(
-                  radius: 147.0,
-                  backgroundColor: Colors.tealAccent,
-                  child: CircleAvatar(
-                    radius: 143.0,
-                    backgroundColor: Colors.black,
-                    child: CircleAvatar(
-                      radius: 140.0,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage(
-                          "assets/t-high-resolution-logo-transparent.png"),
-                    ),
+              ),
+              color: Colors
+                  .white, // Optional background color (useful if the image doesn't cover fully)
+              //   borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.black,
+                width: 2.0,
+              ),
+            ),
+            child: Stack(
+              children: [
+                Center(
+                  // Center the content horizontally
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Flexible(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.deepOrangeAccent,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  )),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 20),
+                              child: Text(
+                                  '''A la  recherche d'une alternance de 1/2 ans  en dev web et mobile pour le master ''',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  )),
+                            ),
+                            SizedBox(height: 15.0),
+                            Text(
+                              'Tamim GOLAM ',
+                              style: TextStyle(
+                                fontSize: 65,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                shadows: [
+                                  BoxShadow(
+                                    color: Colors.deepOrangeAccent
+                                        .withOpacity(0.9), // Glow color
+                                    spreadRadius: 5,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 0),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            AnimatedText(
+                              texts: animatedTexts,
+                              style: TextStyle(fontSize: 30),
+                              textStyles: textStyles,
+                            ),
+                            Text('Actuellement étudiant en dev à  ',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            IndependentAnimatedText(
+                              texts: [
+                                "Estiam en 3ème années spécialité Dev / Data",
+                                "Futur Master dev web & mobile"
+                              ],
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                shadows: [
+                                  BoxShadow(
+                                    color: Colors.deepOrangeAccent
+                                        .withOpacity(0.9), // Glow color
+                                    spreadRadius: 5,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 0),
+                                  ),
+                                ],
+                              ),
+                              textStyles: independentTextStyles,
+                            ),
+                            SizedBox(height: 15),
+                            Row(
+                              children: [
+                                Icon(Icons.mail, color: Colors.white),
+                                SizedBox(width: 20),
+                                Text('golam.tamim94@gmail.com',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white))
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Row(
+                              children: [
+                                Icon(Icons.phone_android_sharp,
+                                    color: Colors.white),
+                                SizedBox(width: 20),
+                                Text('+33 0699341308',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white))
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Row(
+                              children: [
+                                Icon(Icons.info_outline, color: Colors.white),
+                                SizedBox(width: 20),
+                                Text('golam.tamim94@gmail.com',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white))
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Row(
+                              children: [
+                                Icon(Icons.school_outlined,
+                                    color: Colors.white),
+                                SizedBox(width: 20),
+                                Text('Estiam Paris',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white))
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Row(
+                              children: [
+                                Icon(Icons.home, color: Colors.white),
+                                SizedBox(width: 20),
+                                Text('Rosny-Sous-Bois,France',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white))
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Flexible(
+                        child: CircleAvatar(
+                          radius: 147.0,
+                          backgroundColor: Colors.deepOrangeAccent,
+                          child: CircleAvatar(
+                            radius: 143.0,
+                            backgroundColor: Colors.black,
+                            child: CircleAvatar(
+                              radius: 140.0,
+                              backgroundColor: Colors.white,
+                              backgroundImage: AssetImage(
+                                  "assets/t-high-resolution-logo-transparent.png"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
-          //2nd page
+          //2nd page about me
           Container(
             height: heightDevice / 1.5,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    "assets/blacksandp2adrien-olichon.jpg"), // Replace with your image
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.5), // Adjust opacity as needed
+                  BlendMode.darken,
+                ),
+              ),
+              border: Border.all(
+                color: Colors.black,
+                width: 2.0,
+              ),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(
-                  "assets/web.jpg",
-                  height: widthDevice / 1.9,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      // Add the border
+                      color: Colors.deepOrangeAccent, // Border color
+                      width: 4.0,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.deepOrangeAccent
+                            .withOpacity(0.5), // Shadow color
+                        spreadRadius: 5, // Spread radius
+                        blurRadius: 7, // Blur radius
+                        offset: Offset(0, 3), // Changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width *
+                        0.3, // 50% of screen width
+                    child: AspectRatio(
+                      aspectRatio: 1.9,
+                      child: Image.asset(
+                        "assets/fotis-fotopoulos.jpg",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 ),
+                SizedBox(width: 10.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('About me', style: TextStyle(fontSize: 40.0)),
+                    Text('About me',
+                        style: TextStyle(
+                          fontSize: 40.0,
+                          color: Colors.white,
+                          shadows: [
+                            BoxShadow(
+                              color: Colors.deepOrangeAccent
+                                  .withOpacity(0.9), // Glow color
+                              spreadRadius: 7,
+                              blurRadius: 10,
+                              offset: Offset(0, 0),
+                            ),
+                          ],
+                        )),
                     SizedBox(height: 20),
                     Text(
-                        'Bonjour je suis golam Tamim je suis étudiant en informatique et dévelloper  ',
-                        style: TextStyle(fontSize: 15)),
-                    Text('je suis dev mobile', style: TextStyle(fontSize: 15)),
-                    Text('androidiosnsfdjgrsjeiozef',
-                        style: TextStyle(fontSize: 15)),
+                        "Bonjour je suis Tamim , 22 ans étudiant / developpeur passioné par le dev mobile et cross-platform ",
+                        style: TextStyle(fontSize: 15, color: Colors.white)),
+                    Text('Mon parcours scolaire:',
+                        style: TextStyle(fontSize: 15, color: Colors.white)),
                     SizedBox(
                       height: 15,
                     ),
@@ -237,73 +386,73 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: Colors.tealAccent,
+                                color: Colors.deepOrangeAccent,
                                 style: BorderStyle.solid,
                                 width: 2.0),
                             borderRadius: BorderRadius.circular(5.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.deepOrangeAccent
+                                    .withOpacity(0.5), // Shadow color
+                                spreadRadius: 5, // Spread radius
+                                blurRadius: 7, // Blur radius
+                                offset:
+                                    Offset(0, 3), // Changes position of shadow
+                              ),
+                            ],
                           ),
                           padding: EdgeInsets.all(7),
-                          child:
-                              Text("Flutter", style: TextStyle(fontSize: 15.0)),
+                          child: Text(
+                              "Master\nDeveloppeur \nWeb & Mobile \n2024-2026",
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.white)),
                         ),
-                        SizedBox(
-                          width: 7,
-                        ),
+
+                        Icon(Icons.arrow_back,
+                            color: Colors.white), // Add this line
+
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: Colors.tealAccent,
+                                color: Colors.deepOrangeAccent,
                                 style: BorderStyle.solid,
                                 width: 2.0),
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           padding: EdgeInsets.all(7),
-                          child: Text("HTML", style: TextStyle(fontSize: 15.0)),
+                          child: Text("Bachelor\nDev/Data Estiam \n2022-2024",
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.white)),
                         ),
-                        SizedBox(
-                          width: 7,
-                        ),
+                        Icon(Icons.arrow_back, color: Colors.white),
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: Colors.tealAccent,
+                                color: Colors.deepOrangeAccent,
                                 style: BorderStyle.solid,
                                 width: 2.0),
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           padding: EdgeInsets.all(7),
-                          child: Text("HTML", style: TextStyle(fontSize: 15.0)),
+                          child: Text("BTS SIO SLAM\n2020-2022",
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.white)),
                         ),
-                        SizedBox(
-                          width: 7,
-                        ),
+                        Icon(Icons.arrow_back, color: Colors.white),
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: Colors.tealAccent,
+                                color: Colors.deepOrangeAccent,
                                 style: BorderStyle.solid,
                                 width: 2.0),
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           padding: EdgeInsets.all(7),
-                          child: Text("HTML", style: TextStyle(fontSize: 15.0)),
-                        ),
-                        SizedBox(
-                          width: 7,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Colors.tealAccent,
-                                style: BorderStyle.solid,
-                                width: 2.0),
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          padding: EdgeInsets.all(7),
-                          child: Text("HTML", style: TextStyle(fontSize: 15.0)),
-                        ),
-                        SizedBox(
-                          width: 7,
+                          child: Text("BAC ES\n2020 ",
+                              style: TextStyle(
+                                fontSize: 15.0,
+                                color: Colors.white,
+                              )),
                         ),
                       ],
                     ),
@@ -314,44 +463,138 @@ class _LandingPageWebState extends State<LandingPageWeb> {
           ),
           //Page 3
           Container(
-            height: heightDevice / 1.3,
+            height: heightDevice / 0.8,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/blacksandp3adrien-olichon.jpg'), // Replace with your image path
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.5), // Adjust opacity as needed
+                  BlendMode.darken,
+                ),
+              ),
+              border: Border.all(
+                color: Colors.black,
+                width: 2.0,
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('What i do ?', style: TextStyle(fontSize: 25.0)),
+                Text('Mes expériences ',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      shadows: [
+                        BoxShadow(
+                          color: Colors.deepOrangeAccent, // Glow color
+                          spreadRadius: 7,
+                          blurRadius: 10,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AnimatedCard(
-                      imagePaths: "assets/app.png",
-                      text: "app development",
-                      fit: BoxFit.contain,
-                      reverse: true,
-                    ),
-                    AnimatedCard(
-                      imagePaths: "assets/webL.png",
-                      text: "web development",
-                      fit: BoxFit.contain,
-                      reverse: true,
-                    ),
-                    AnimatedCard(
-                      imagePaths: "assets/firebase.png",
-                      text: "back-end",
+                      imagePath: "assets/flutter.png",
+                      text: "Cross-plateform development",
                       fit: BoxFit.contain,
                       reverse: true,
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AnimatedCard(
+                      imagePath: "assets/Web-dev.png",
+                      text: "web development",
+                      fit: BoxFit.contain,
+                      reverse: true,
+                      width: widthDevice / 4,
+                      height: heightDevice / 4,
+                    ),
+                    AnimatedCard(
+                      imagePath: "assets/back-end.png",
+                      text: "back-end",
+                      fit: BoxFit.contain,
+                      reverse: true,
+                      width: widthDevice / 4,
+                      height: heightDevice / 4,
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AnimatedCard(
+                      imagePath: "assets/Database_api.png",
+                      text: "Database / API",
+                      fit: BoxFit.contain,
+                      reverse: true,
+                      width: widthDevice / 4,
+                      height: heightDevice / 4,
+                    ),
+                    AnimatedCard(
+                      imagePath: "assets/Devsops.png",
+                      text: "Devsops",
+                      fit: BoxFit.contain,
+                      reverse: true,
+                      width: widthDevice / 4,
+                      height: heightDevice / 4,
+                    ),
+                    AnimatedCard(
+                        imagePath: "Gamedev.png",
+                        text: "Game development",
+                        fit: BoxFit.contain,
+                        reverse: true,
+                        width: widthDevice / 4,
+                        height: heightDevice / 4),
+                  ],
+                ),
+                SizedBox(height: 30.0),
               ],
             ),
           ),
+
           //Page 4
           Container(
             height: heightDevice,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/blacksandpeter-gargiulo.jpg'), // Replace with your image path
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.5), // Adjust opacity as needed
+                  BlendMode.darken,
+                ),
+              ),
+              border: Border.all(
+                color: Colors.black,
+                width: 2.0,
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('Contact me ', style: TextStyle(fontSize: 40)),
+                Text('Contact me ',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: Colors.white,
+                      shadows: [
+                        BoxShadow(
+                          color: Colors.deepOrangeAccent, // Glow color
+                          spreadRadius: 7,
+                          blurRadius: 10,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -400,13 +643,12 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     ),
                     height: 60,
                     minWidth: 200.0,
-                    color: Colors.tealAccent,
+                    color: Colors.deepOrangeAccent,
                     child: Text('Submit', style: TextStyle(fontSize: 20.0)),
                     onPressed: () {})
               ],
             ),
           ),
-          SizedBox(height: 20.0),
         ],
       ),
     );

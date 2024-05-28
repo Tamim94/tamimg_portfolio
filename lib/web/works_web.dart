@@ -12,10 +12,10 @@ class WorksWeb extends StatefulWidget {
 }
 
 class _WorksWebState extends State<WorksWeb> {
-  get widthDevice => null;
-
   @override
   Widget build(BuildContext context) {
+    var widthDevice = MediaQuery.of(context).size.width;
+
     return Scaffold(
       drawer: Drawer(
         backgroundColor: Colors.white,
@@ -128,14 +128,16 @@ class _WorksWebState extends State<WorksWeb> {
         body: ListView(
           children: [
             SizedBox(height: 30.0),
-            SansBold("Works", 40.0),
+            Center(
+              child: SansBold("Works", 40.0),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AnimatedCard(
-                  imagePath: "assets/portfolio_screenshot.PNG",
+                  imagePath: "assets/firebase.PNG",
                   height: 200.0,
-                  width: 300.0,
+                  width: 200.0,
                 ),
                 SizedBox(
                   width: widthDevice / 3,

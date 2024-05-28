@@ -82,7 +82,7 @@ class _ContactWebState extends State<ContactWeb> {
           return <Widget>[
             SliverAppBar(
               expandedHeight: 500.0,
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.black87,
               iconTheme: IconThemeData(size: 25.0, color: Colors.black),
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset(
@@ -180,7 +180,7 @@ class _ContactWebState extends State<ContactWeb> {
                     borderRadius: BorderRadius.circular(10.0)),
                 height: 60.0,
                 minWidth: 200.0,
-                color: Colors.tealAccent,
+                color: Colors.deepOrangeAccent,
                 child: SansBold("Submit", 20.0),
               ),
               SizedBox(
