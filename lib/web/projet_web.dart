@@ -41,12 +41,12 @@ class _ProjetWebState extends State<ProjetWeb> {
               ),
               Spacer(),
               TabsWeb(
-                title: "Projets",
+                title: "Experience",
                 route: '/projet',
               ),
               Spacer(),
               TabsWeb(
-                title: "Experience ",
+                title: "Experience Pro ",
                 route: '/works',
               ),
               Spacer(),
@@ -173,7 +173,7 @@ class _ProjetWebState extends State<ProjetWeb> {
                           ProjetPost(
                             title: 'Projet Front - end  avec API',
                             description:
-                                '''Pour ce projet j'ai  crée une application front User management utilisant  une  API sur le  web  en Typescript et React ''',
+                                """Pour ce projet j'ai  crée une application front User management utilisant  une  API sur le  web  en Typescript et React """,
                             imagePath: 'assets/PROJET-TS.png',
                             fit: BoxFit.fill,
                             filterQuality: FilterQuality.high,
@@ -187,6 +187,7 @@ class _ProjetWebState extends State<ProjetWeb> {
                               'MVC',
                               'API',
                               'CRUD',
+                              'PROJET Ecole'
                             ],
                             projetUrl:
                                 'https://github.com/Tamim94/Tamim_users-managementReact_TS.git',
@@ -207,7 +208,8 @@ class _ProjetWebState extends State<ProjetWeb> {
                               'Express',
                               'Postman',
                               'CRUD',
-                              'API'
+                              'API',
+                              'PROJET Ecole'
                             ],
                             projetUrl:
                                 'https://github.com/Tamim94/Tamimtaskmanagerapp.git',
@@ -220,6 +222,7 @@ class _ProjetWebState extends State<ProjetWeb> {
                             technologies: [
                               'Flutter',
                               'Dart',
+                              'OOP',
                               'Firebase',
                               'Personnel',
                             ],
@@ -239,6 +242,7 @@ class _ProjetWebState extends State<ProjetWeb> {
                               'Flutter',
                               'Dart',
                               'API',
+                              'OOP',
                               'Personnel',
                             ],
                             projetUrl:
@@ -247,13 +251,17 @@ class _ProjetWebState extends State<ProjetWeb> {
                           ProjetPost(
                             title: 'HACKATHON 2023-Jeux avec Unity',
                             description:
-                                "’Nous devions crée un jeux en Unity C# avec une  histoire  et une representation de couleur ,"
-                                "",
-                            imagePath: 'assets/project2.png',
+                                "Nous devions crée un jeux en Unity C# avec plusieurs map et une representation de couleur ,",
+                            imagePath: 'assets/HACKATHON2023.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'Unity',
                               'C#',
                               'Game design',
+                              'OOP',
                               'PROJET Ecole',
                             ],
                             projetUrl:
@@ -262,35 +270,30 @@ class _ProjetWebState extends State<ProjetWeb> {
                           ProjetPost(
                             title: 'Projet Jeux avec Unity ',
                             description:
-                                "’Pour ce projet j'ai crée un jeux de plateforme avec unity pour apprendre a utiliser unity et C#",
-                            imagePath: 'assets/project2.png',
+                                "Pour ce projet j'ai crée un jeux de tir avec unity pour apprendre a utiliser unity et C#",
+                            imagePath: 'assets/tamimgame.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'Unity',
                               'C#',
+                              'OOP',
                               'PROJET Ecole',
                             ],
                             projetUrl:
                                 ' https://tamim94.itch.io/tamimstrangegame',
                           ),
                           ProjetPost(
-                            title: 'Projet Contact Form JS & NodeJS',
-                            description:
-                                "’Pour ce projet j'ai crée une exemple d'application formualire de contact avec ExpressJS et NodeJS ",
-                            imagePath: 'assets/project2.png',
-                            technologies: [
-                              'NodeJS',
-                              'Javascript',
-                              'ExpressJS',
-                              'PROJET Ecole',
-                            ],
-                            projetUrl:
-                                ' https://github.com/Tamim94/tamimexemplenodejsapp.git',
-                          ),
-                          ProjetPost(
                             title: "Projet Student Manager ReactJS & NodeJS",
                             description:
-                                "’Pour ce projet j'ai crée une application de student management avec un front react et back-end nodejs  ",
-                            imagePath: 'assets/project2.png',
+                                "Pour ce projet j'ai crée une application de student management avec un front react et back-end nodejs et BDD mongodb  ",
+                            imagePath: 'assets/studentnodejsreactapp.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'NodeJS',
                               'Javascript',
@@ -302,14 +305,38 @@ class _ProjetWebState extends State<ProjetWeb> {
                                 'https://github.com/Tamim94/tamimjsstudentapp.git',
                           ),
                           ProjetPost(
+                            title: 'Projet Contact Form JS & NodeJS',
+                            description:
+                                "Pour ce projet j'ai crée un exemple d'application formulaire de contact avec ExpressJS et NodeJS ",
+                            imagePath: 'assets/contactformnodejs.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
+                            technologies: [
+                              'NodeJS',
+                              'Javascript',
+                              'MySQL',
+                              'ExpressJS',
+                              'PROJET Ecole',
+                            ],
+                            projetUrl:
+                                ' https://github.com/Tamim94/tamimexemplenodejsapp.git',
+                          ),
+                          ProjetPost(
                             title: "Portfolio V2 (ancien portfolio) ",
                             description:
-                                "’Ce premier porfolio était mon début en flutter web et m'a permis de me familiariser avec le framework et de présenter mes projets",
-                            imagePath: 'assets/project2.png',
+                                "Ce premier porfolio était mon début en flutter web et m'a permis de me familiariser avec le framework et de présenter mes projets",
+                            imagePath: 'assets/exportfolio.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'Flutter',
                               'Dart',
                               'Firebase',
+                              'OOP',
                             ],
                             projetUrl:
                                 'https://github.com/Tamim94/PortfolioGolamTamim.git',
@@ -317,11 +344,16 @@ class _ProjetWebState extends State<ProjetWeb> {
                           ProjetPost(
                             title: "Projet Jeux JAVA ",
                             description:
-                                "’Pour ce projet nous devions créer un jeu de BlackJack en JAVA avec le framework Swing",
-                            imagePath: 'assets/project2.png',
+                                "Pour ce projet nous devions créer un jeu de BlackJack en JAVA avec le framework Swing",
+                            imagePath: 'assets/blackjack.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'Java',
                               'Swing',
+                              'OOP',
                               'PROJET Ecole',
                             ],
                             projetUrl:
@@ -329,10 +361,32 @@ class _ProjetWebState extends State<ProjetWeb> {
                           ),
                           ProjetPost(
                             title:
-                                "Projet Page d'inscription avec Base de données, Python Django ",
+                                "Projet Page student management avec une page d'inscription, Python Django ",
                             description:
-                                "’Pour ce projet nous devions créer une page d'inscription étudiant  en python avec le framework Django",
-                            imagePath: 'assets/project2.png',
+                                "Pour ce projet nous devions créer un site 'estiamflix'  en python avec le framework Django",
+                            imagePath: 'assets/estiamflix.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
+                            technologies: [
+                              'Python',
+                              'Django',
+                              'PROJET Ecole',
+                            ],
+                            projetUrl:
+                                'https://github.com/Tamim94/Tamimestiamflix1.git',
+                          ),
+                          ProjetPost(
+                            title:
+                                "Projet Page student management avec Base de données, Python Django ",
+                            description:
+                                "Pour ce projet nous devions créer une page de student management   en python avec le framework Django",
+                            imagePath: 'assets/pyetudiantmanager.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'Python',
                               'Django',
@@ -345,22 +399,25 @@ class _ProjetWebState extends State<ProjetWeb> {
                             title:
                                 "Projet IOT Arduino avec envoi de data sur un site",
                             description:
-                                "’Projet Estiam Arduino Projet Arduino IOT , nous devions programmé une carte arduino a envoyé du data sur un site de feed(adafruit)",
-                            imagePath: 'assets/project2.png',
-                            technologies: [
-                              'C',
-                              'C++',
-                              'Arduino '
-                                  'PROJET Ecole'
-                            ],
+                                "Projet Estiam Arduino Projet Arduino IOT , nous devions programmé une carte arduino a envoyé du data sur un site de feed(adafruit)",
+                            imagePath: 'assets/iotproj.jpg',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
+                            technologies: ['Arduino ', 'PROJET Ecole'],
                             projetUrl:
                                 'https://github.com/Tamim94/Tamim_Projet_IOT_Arduino.git',
                           ),
                           ProjetPost(
-                            title: "HACKATHON 2022- Projet MBOT Arduino",
+                            title: "HACKATHON 2022- Projet IOT  MBOT Arduino",
                             description:
-                                "’Projet de groupe en groupe avec mblock ( Projet Arduino pendant le Hackathon 2022 ou nous devions programmé un MBOT a marqué des buts.",
-                            imagePath: 'assets/project2.png',
+                                "Projet de groupe en groupe avec mblock ( Projet Arduino pendant le Hackathon 2022 ou nous devions programmé un MBOT a marqué des buts.)",
+                            imagePath: 'assets/hackathon2022.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'Arduino',
                               'PROJET Ecole',
@@ -371,8 +428,13 @@ class _ProjetWebState extends State<ProjetWeb> {
                           ProjetPost(
                             title:
                                 "Projet Web CVEN formulaire de reservation en PHP SQL ",
-                            description: "’Projet Groupe BTS SIO fin d'année ",
-                            imagePath: 'assets/project2.png',
+                            description: "Projet Groupe BTS SIO fin d'année ",
+                            imagePath:
+                                "assets/Capture d'écran 2024-05-29 130625.png",
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'PHP',
                               'SQL',
@@ -383,8 +445,12 @@ class _ProjetWebState extends State<ProjetWeb> {
                           ProjetPost(
                             title: "Portfolio avec Wix (ancien portfolio) ",
                             description:
-                                "’Ce premier portfolio pendant mon 1ere année de BTS SIO était mon début en développement web et m'a permi  de présenter mes projets",
-                            imagePath: 'assets/project2.png',
+                                "Ce premier portfolio pendant mon 1ere année de BTS SIO était mon début en développement web et m'a permi  de présenter mes projets",
+                            imagePath: 'assets/exxportfolio.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'Wix',
                               'No Code',
@@ -405,6 +471,4 @@ class _ProjetWebState extends State<ProjetWeb> {
       ),
     );
   }
-
-// ... (Social Icon Button and ProjetPost code remain the same)
 }

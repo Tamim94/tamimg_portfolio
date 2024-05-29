@@ -56,7 +56,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.black87,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -84,12 +84,12 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
             SizedBox(height: 20.0),
             TabsMobile(text: "About", route: '/about'),
             SizedBox(height: 20.0),
-            TabsMobile(text: "Projets", route: '/projet'),
+            TabsMobile(text: "Experience", route: '/projet'),
             SizedBox(height: 20.0),
+            TabsMobile(text: "Experience Pro", route: '/works'),
+            SizedBox(height: 15.0),
             TabsMobile(text: "Contact", route: '/contact'),
             SizedBox(height: 20.0),
-            TabsMobile(text: "Works", route: '/works'),
-            SizedBox(height: 15.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -132,7 +132,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
               image: DecorationImage(
                 image: AssetImage('assets/blacksandbyadrien-olichon.jpg'),
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.7), // Adjust opacity as needed
+                  Colors.black.withOpacity(0.7),
                   BlendMode.darken,
                 ),
                 fit: BoxFit.cover,

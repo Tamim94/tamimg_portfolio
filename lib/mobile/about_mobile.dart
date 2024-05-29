@@ -68,12 +68,12 @@ class _AboutMobileState extends State<AboutMobile> {
               SizedBox(height: 20.0),
               TabsMobile(text: "About", route: '/about'),
               SizedBox(height: 20.0),
-              TabsMobile(text: "Projets", route: '/projet'),
+              TabsMobile(text: "Experience", route: '/projet'),
               SizedBox(height: 20.0),
+              TabsMobile(text: "Experience Pro", route: '/works'),
+              SizedBox(height: 15.0),
               TabsMobile(text: "Contact", route: '/contact'),
               SizedBox(height: 20.0),
-              TabsMobile(text: "Works", route: '/works'),
-              SizedBox(height: 15.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

@@ -307,21 +307,24 @@ class Sans2 extends StatelessWidget {
   }
 }
 
-//form
+//form acve controller
 class TextForm extends StatelessWidget {
   final text;
   final Containerwidth;
   final hintText;
   final maxLine;
   final Containerheight;
-  const TextForm({
-    Key? key,
-    @required this.text,
-    @required this.Containerwidth,
-    @required this.Containerheight,
-    @required this.hintText,
-    this.maxLine,
-  }) : super(key: key);
+  final TextEditingController? controller;
+
+  const TextForm(
+      {Key? key,
+      @required this.text,
+      this.Containerwidth,
+      this.Containerheight,
+      @required this.hintText,
+      this.maxLine,
+      this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -336,7 +339,16 @@ class TextForm extends StatelessWidget {
               width: Containerwidth,
               height: Containerheight,
               child: TextFormField(
+                controller: controller,
                 maxLines: maxLine == null ? null : maxLine,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter $text'; // Display the error message
+                  }
+                  return null;
+                },
+                cursorColor: Colors.white,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.deepOrangeAccent),

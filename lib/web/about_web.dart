@@ -59,7 +59,7 @@ class _AboutWebState extends State<AboutWeb> {
             SizedBox(
               height: 15.0,
             ),
-            Text('Tamim GOLAM',
+            Text('Tamim GOLAM ',
                 style: TextStyle(fontSize: 30.0, color: Colors.white)),
             SizedBox(height: 15.0),
             Row(
@@ -117,12 +117,12 @@ class _AboutWebState extends State<AboutWeb> {
             ),
             Spacer(),
             TabsWeb(
-              title: "Projets",
+              title: "Experience",
               route: '/projet',
             ),
             Spacer(),
             TabsWeb(
-              title: "Experience ",
+              title: "Experience Pro",
               route: '/works',
             ),
             Spacer(),

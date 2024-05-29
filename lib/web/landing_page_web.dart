@@ -107,12 +107,12 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             ),
             Spacer(),
             TabsWeb(
-              title: "Projets",
+              title: "Experience",
               route: '/projet',
             ),
             Spacer(),
             TabsWeb(
-              title: "Experience ",
+              title: "Experience Pro",
               route: '/works',
             ),
             Spacer(),
@@ -134,7 +134,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                 image: AssetImage('assets/blacksandbyadrien-olichon.jpg'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.5), // Adjust opacity as needed
+                  Colors.black.withOpacity(0.5),
                   BlendMode.darken,
                 ),
               ),
@@ -374,7 +374,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                         )),
                     SizedBox(height: 20),
                     Text(
-                        "Bonjour je suis Tamim , 22 ans étudiant / developpeur passioné par le dev mobile et cross-platform ",
+                        "Salut ! Je m’appelle Tamim, \nj’ai 22 ans et je suis étudiant en développement\npassionné par les applications mobiles et les solutions cross-platform.",
                         style: TextStyle(fontSize: 15, color: Colors.white)),
                     Text('Mon parcours scolaire:',
                         style: TextStyle(fontSize: 15, color: Colors.white)),

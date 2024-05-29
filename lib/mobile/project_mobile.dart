@@ -18,7 +18,20 @@ class _ProjetMobileState extends State<ProjetMobile> {
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(color: Colors.white, size: 30.0),
+          title: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(3.0),
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: 4.0,
+            ),
+          ),
+        ),
         endDrawer: Drawer(
           backgroundColor: Colors.black.withOpacity(0.8),
           child: Column(
@@ -41,12 +54,12 @@ class _ProjetMobileState extends State<ProjetMobile> {
               SizedBox(height: 20.0),
               TabsMobile(text: "About", route: '/about'),
               SizedBox(height: 20.0),
-              TabsMobile(text: "Projets", route: '/projet'),
+              TabsMobile(text: "Experience", route: '/projet'),
               SizedBox(height: 20.0),
+              TabsMobile(text: "Experience Pro", route: '/works'),
+              SizedBox(height: 15.0),
               TabsMobile(text: "Contact", route: '/contact'),
               SizedBox(height: 20.0),
-              TabsMobile(text: "Works", route: '/works'),
-              SizedBox(height: 15.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -80,66 +93,320 @@ class _ProjetMobileState extends State<ProjetMobile> {
             ],
           ),
         ),
-        body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                backgroundColor: Colors.white,
-                iconTheme: IconThemeData(color: Colors.white, size: 35.0),
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(3.0),
-                    ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 4.0,
-                    ),
-                    child: AbelCustom(
-                      text: "Projet",
-                      color: Colors.white,
-                      size: 24.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  background: Image.asset(
-                    "assets/new_york2.webp",
-                    filterQuality: FilterQuality.high,
-                    fit: BoxFit.cover,
-                  ),
+        body: Stack(
+          children: [
+            Image.asset(
+              "assets/webworkblackniek-doup-OuuMTjwEP-o-unsplash.jpg",
+              height: double.infinity,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+            // Text overlay
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                'Experience & Projets',
+                style: TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                expandedHeight: 500.0,
-              ),
-            ];
-          },
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  ProjetPost(
-                    title: 'Project Title 1',
-                    description: 'Description for project 1',
-                    imagePath: 'assets/project1.png',
-                    technologies: ['Flutter', 'Dart', 'Firebase'],
-                    projetUrl: 'https://yourproject1url.com',
-                  ),
-                  ProjetPost(
-                    title: 'Project Title 2',
-                    description: 'Description for project 2',
-                    imagePath: 'assets/project2.png',
-                    technologies: ['Python', 'Django', 'React'],
-                    projetUrl: 'https://yourproject2url.com',
-                  ),
-                ],
               ),
             ),
-          ),
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    ProjetPost(
+                      title: 'Projet Front - end  avec API',
+                      description:
+                          """Pour ce projet j'ai  crée une application front User management utilisant  une  API sur le  web  en Typescript et React """,
+                      imagePath: 'assets/PROJET-TS.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Typescript',
+                        'React',
+                        'HTML',
+                        'CSS',
+                        'MVC',
+                        'API',
+                        'CRUD',
+                        'PROJET Ecole'
+                      ],
+                      projetUrl:
+                          'https://github.com/Tamim94/Tamim_users-managementReact_TS.git',
+                    ),
+                    ProjetPost(
+                      title: 'Projet Backend  avec API',
+                      description:
+                          '''Pour ce projet j'ai  crée une API de task manager  en Javascript Node.js  ''',
+                      imagePath: 'assets/PROJET-API.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Node.js',
+                        'Javascript',
+                        'Mongodb',
+                        'Express',
+                        'Postman',
+                        'CRUD',
+                        'API',
+                        'PROJET Ecole'
+                      ],
+                      projetUrl:
+                          'https://github.com/Tamim94/Tamimtaskmanagerapp.git',
+                    ),
+                    ProjetPost(
+                      title: 'Portfolio Tamim  V3(Le site actuel)',
+                      description:
+                          "J'ai créé ce portfolio pour développer mes compétences en dev  cross-plateform avec flutter  et pour présenter mes projets et mes compétences",
+                      imagePath: 'assets/project2.png',
+                      technologies: [
+                        'Flutter',
+                        'Dart',
+                        'OOP',
+                        'Firebase',
+                        'Cross-platform',
+                        'Personnel',
+                      ],
+                      projetUrl:
+                          ' https://github.com/Tamim94/tamimg_portfolio.git',
+                    ),
+                    ProjetPost(
+                      title: 'Chatbot avec API OPENAI',
+                      description:
+                          "J'ai crée un chatbot avec l'API d'openai pour apprendre a utiliser les API avec flutter (La clé api a expiré donc ne fonctionne plus)",
+                      imagePath: 'assets/tamimgpt3.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: MediaQuery.of(context).size.height * 0.3,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Flutter',
+                        'Dart',
+                        'API',
+                        'OOP',
+                        'Personnel',
+                      ],
+                      projetUrl:
+                          ' https://github.com/Tamim94/tamimchatbotgpt.git',
+                    ),
+                    ProjetPost(
+                      title: 'HACKATHON 2023-Jeux avec Unity',
+                      description:
+                          "Nous devions crée un jeux en Unity C# avec plusieurs map et une representation de couleur ,",
+                      imagePath: 'assets/HACKATHON2023.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Unity',
+                        'C#',
+                        'Game design',
+                        'OOP',
+                        'PROJET Ecole',
+                      ],
+                      projetUrl:
+                          ' https://github.com/Tamim94/tamimchatbotgpt.git',
+                    ),
+                    ProjetPost(
+                      title: 'Projet Jeux avec Unity ',
+                      description:
+                          "Pour ce projet j'ai crée un jeux de tir avec unity pour apprendre a utiliser unity et C#",
+                      imagePath: 'assets/tamimgame.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Unity',
+                        'C#',
+                        'OOP',
+                        'PROJET Ecole',
+                      ],
+                      projetUrl: ' https://tamim94.itch.io/tamimstrangegame',
+                    ),
+                    ProjetPost(
+                      title: "Projet Student Manager ReactJS & NodeJS",
+                      description:
+                          "Pour ce projet j'ai crée une application de student management avec un front react et back-end nodejs et BDD mongodb  ",
+                      imagePath: 'assets/studentnodejsreactapp.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'NodeJS',
+                        'Javascript',
+                        'ReactJS',
+                        'MongoDB',
+                        'PROJET Ecole',
+                      ],
+                      projetUrl:
+                          'https://github.com/Tamim94/tamimjsstudentapp.git',
+                    ),
+                    ProjetPost(
+                      title: 'Projet Contact Form JS & NodeJS',
+                      description:
+                          "Pour ce projet j'ai crée un exemple d'application formulaire de contact avec ExpressJS et NodeJS ",
+                      imagePath: 'assets/contactformnodejs.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'NodeJS',
+                        'Javascript',
+                        'MySQL',
+                        'ExpressJS',
+                        'PROJET Ecole',
+                      ],
+                      projetUrl:
+                          ' https://github.com/Tamim94/tamimexemplenodejsapp.git',
+                    ),
+                    ProjetPost(
+                      title: "Portfolio V2 (ancien portfolio) ",
+                      description:
+                          "Ce premier porfolio était mon début en flutter web et m'a permis de me familiariser avec le framework et de présenter mes projets",
+                      imagePath: 'assets/exportfolio.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: ['Flutter', 'Dart', 'Firebase', 'OOP'],
+                      projetUrl:
+                          'https://github.com/Tamim94/PortfolioGolamTamim.git',
+                    ),
+                    ProjetPost(
+                      title: "Projet Jeux JAVA ",
+                      description:
+                          "Pour ce projet nous devions créer un jeu de BlackJack en JAVA avec le framework Swing",
+                      imagePath: 'assets/blackjack.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Java',
+                        'Swing',
+                        'OOP',
+                        'PROJET Ecole',
+                      ],
+                      projetUrl:
+                          'https://github.com/Tamim94/TAMIMBLACKJACKCARD.git',
+                    ),
+                    ProjetPost(
+                      title:
+                          "Projet Page student management avec une page d'inscription, Python Django ",
+                      description:
+                          "Pour ce projet nous devions créer un site 'estiamflix'  en python avec le framework Django",
+                      imagePath: 'assets/estiamflix.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Python',
+                        'Django',
+                        'PROJET Ecole',
+                      ],
+                      projetUrl:
+                          'https://github.com/Tamim94/Tamimestiamflix1.git',
+                    ),
+                    ProjetPost(
+                      title:
+                          "Projet Page student management avec Base de données, Python Django ",
+                      description:
+                          "Pour ce projet nous devions créer une page de student management   en python avec le framework Django",
+                      imagePath: 'assets/pyetudiantmanager.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Python',
+                        'Django',
+                        'PROJET Ecole',
+                      ],
+                      projetUrl:
+                          'https://github.com/Tamim94/pythonESTIAMminiprojet.git',
+                    ),
+                    ProjetPost(
+                      title:
+                          "Projet IOT Arduino avec envoi de data sur un site",
+                      description:
+                          "Projet Estiam Arduino Projet Arduino IOT , nous devions programmé une carte arduino a envoyé du data sur un site de feed(adafruit)",
+                      imagePath: 'assets/iotproj.jpg',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: ['Arduino ', 'PROJET Ecole'],
+                      projetUrl:
+                          'https://github.com/Tamim94/Tamim_Projet_IOT_Arduino.git',
+                    ),
+                    ProjetPost(
+                      title: "HACKATHON 2022- Projet IOT  MBOT Arduino",
+                      description:
+                          "Projet de groupe en groupe avec mblock ( Projet Arduino pendant le Hackathon 2022 ou nous devions programmé un MBOT a marqué des buts.)",
+                      imagePath: 'assets/hackathon2022.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Arduino',
+                        'PROJET Ecole',
+                      ],
+                      projetUrl:
+                          ' https://github.com/Tamim94/Tamim_Projet_Arduino_HACKATHON2022.git',
+                    ),
+                    ProjetPost(
+                      title:
+                          "Projet Web CVEN formulaire de reservation en PHP SQL ",
+                      description: "Projet Groupe BTS SIO fin d'année ",
+                      imagePath: "assets/Capture d'écran 2024-05-29 130625.png",
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'PHP',
+                        'SQL',
+                        'PROJET BTS SIO ',
+                      ],
+                      projetUrl: ' https://github.com/Tamim94/CVEN.git',
+                    ),
+                    ProjetPost(
+                      title: "Portfolio avec Wix (ancien portfolio) ",
+                      description:
+                          "Ce premier portfolio pendant mon 1ere année de BTS SIO était mon début en développement web et m'a permi  de présenter mes projets",
+                      imagePath: 'assets/exxportfolio.png',
+                      fit: BoxFit.fill,
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
+                      technologies: [
+                        'Wix',
+                        'No Code',
+                        'Personnel',
+                      ],
+                      projetUrl: 'https://golamtamim94.wixsite.com/portfolio',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
-
-// ... (_buildSocialIconButton function remains the same)
 }

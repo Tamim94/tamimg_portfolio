@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tamimg_portfolio/components.dart';
@@ -11,6 +12,12 @@ class ContactMobile extends StatefulWidget {
 }
 
 class _ContactMobileState extends State<ContactMobile> {
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _messageController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
@@ -39,12 +46,12 @@ class _ContactMobileState extends State<ContactMobile> {
             SizedBox(height: 20.0),
             TabsMobile(text: "About", route: '/about'),
             SizedBox(height: 20.0),
-            TabsMobile(text: "Projets", route: '/projet'),
+            TabsMobile(text: "Experience", route: '/projet'),
             SizedBox(height: 20.0),
+            TabsMobile(text: "Experience Pro", route: '/works'),
+            SizedBox(height: 15.0),
             TabsMobile(text: "Contact", route: '/contact'),
             SizedBox(height: 20.0),
-            TabsMobile(text: "Works", route: '/works'),
-            SizedBox(height: 15.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -65,14 +72,6 @@ class _ContactMobileState extends State<ContactMobile> {
                     width: 35.0,
                   ),
                 ),
-                /*  IconButton(
-                  onPressed: () async => await launch("http://twitter.com"),
-                  icon: SvgPicture.asset(
-                    "assets/twitter.svg",
-                    color: Colors.black,
-                    width: 35.0,
-                  ),
-                ),*/
               ],
             )
           ],
@@ -86,62 +85,129 @@ class _ContactMobileState extends State<ContactMobile> {
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(
                 size: 35.0,
-                color: Colors.black,
+                color: Colors.white,
               ),
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset(
-                  "assets/contact_image.jpg",
+                  "assets/newyorkphone.jpg", // Image from ContactWeb
                   fit: BoxFit.cover,
+                  height: double.infinity,
+                  width: double.infinity,
+                  filterQuality: FilterQuality.high, // Maintain high quality
                 ),
               ),
             )
           ];
         },
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 25.0),
-          child: Wrap(
-            runSpacing: 20.0,
-            spacing: 20.0,
-            alignment: WrapAlignment.center,
-            children: [
-              SansBold("Contact me ", 35.0),
-              TextForm(
-                  text: "First name",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "hahahah"),
-              TextForm(
-                  text: "lASTNAME",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "hahaha"),
-              TextForm(
-                  text: "Num/Phone number",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "hahaha"),
-              TextForm(
-                  text: "Email",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "hahaha"),
-              TextForm(
-                text: "Message",
-                Containerwidth: widthDevice / 1.4,
-                hintText: "hahahaha",
-                maxLine: 10,
-              ),
-              MaterialButton(
-                onPressed: () {},
-                elevation: 20.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+          padding: EdgeInsets.zero,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    "assets/blackrocklou-batier-5EoWFa_Htdo-unsplash.jpg"),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.8),
+                  BlendMode.darken,
                 ),
-                height: 60.0,
-                minWidth: widthDevice / 2.2,
-                color: Colors.tealAccent,
-                child: SansBold("Submit", 20.0),
-              )
-            ],
+              ),
+            ),
+            child: Form(
+              // Wrap your TextForm fields with Form
+              key: _formKey,
+              child: Wrap(
+                runSpacing: 20.0,
+                spacing: 20.0,
+                alignment: WrapAlignment.center,
+                children: [
+                  SansBold2("Contact me ", 35.0),
+                  TextForm(
+                      text: "First name",
+                      Containerwidth: widthDevice / 1.4,
+                      hintText: "First name",
+                      controller: _firstNameController),
+                  TextForm(
+                      text: "Last name",
+                      Containerwidth: widthDevice / 1.4,
+                      hintText: "Last name",
+                      controller: _lastNameController),
+                  TextForm(
+                      text: "Num/Phone number",
+                      Containerwidth: widthDevice / 1.4,
+                      hintText: "Num/phone number ",
+                      controller: _phoneNumberController),
+                  TextForm(
+                      text: "Email",
+                      Containerwidth: widthDevice / 1.4,
+                      hintText: "Email",
+                      controller: _emailController),
+                  TextForm(
+                    text: "Message",
+                    Containerwidth: widthDevice / 1.4,
+                    hintText: "Message",
+                    maxLine: 10,
+                    controller: _messageController,
+                  ),
+                  MaterialButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+
+                        try {
+                          await FirebaseFirestore.instance
+                              .collection('contactMessages')
+                              .add({
+                            'firstName': _firstNameController.text,
+                            'lastName': _lastNameController.text,
+                            'email': _emailController.text,
+                            'phoneNumber': _phoneNumberController.text,
+                            'message': _messageController.text,
+                            'timestamp': FieldValue.serverTimestamp(),
+                          });
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text('Message sent successfully!')),
+                          );
+                          _firstNameController.clear();
+                          _lastNameController.clear();
+                          _emailController.clear();
+                          _phoneNumberController.clear();
+                          _messageController.clear();
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text('Error sending message: $e')),
+                          );
+                        }
+                      }
+                    },
+                    elevation: 20.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    height: 60.0,
+                    minWidth: widthDevice / 2.2,
+                    color: Colors.deepOrangeAccent,
+                    child: SansBold("Submit", 20.0),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _phoneNumberController.dispose();
+    _messageController.dispose();
+    super.dispose();
   }
 }
