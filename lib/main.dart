@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tamimg_portfolio/firebase_options.dart';
 
 import 'package:tamimg_portfolio/routes.dart';
-
+import 'dart:js' as js;
 import 'package:url_strategy/url_strategy.dart';
 
 void main() async {

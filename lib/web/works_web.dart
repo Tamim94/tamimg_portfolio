@@ -152,6 +152,9 @@ class _WorksWebState extends State<WorksWeb> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 25.0,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -203,6 +206,9 @@ class _WorksWebState extends State<WorksWeb> {
                     ),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 35.0,
               ),
             ],
           ),

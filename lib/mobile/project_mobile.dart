@@ -42,7 +42,8 @@ class _ProjetMobileState extends State<ProjetMobile> {
                 child: Container(
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(width: 2.0, color: Colors.black)),
+                      border: Border.all(
+                          width: 2.0, color: Colors.deepOrangeAccent)),
                   child: Image.asset(
                       'assets/t-high-resolution-logo-transparent.png'),
                 ),
@@ -80,14 +81,6 @@ class _ProjetMobileState extends State<ProjetMobile> {
                       width: 35.0,
                     ),
                   ),
-                  /*  IconButton(
-                  onPressed: () async => await launch("http://twitter.com"),
-                  icon: SvgPicture.asset(
-                    "assets/twitter.svg",
-                    color: Colors.black,
-                    width: 35.0,
-                  ),
-                ),*/
                 ],
               )
             ],
@@ -167,6 +160,9 @@ class _ProjetMobileState extends State<ProjetMobile> {
                       description:
                           "J'ai créé ce portfolio pour développer mes compétences en dev  cross-plateform avec flutter  et pour présenter mes projets et mes compétences",
                       imagePath: 'assets/project2.png',
+                      filterQuality: FilterQuality.high,
+                      imageHeight: 200.0,
+                      imageWidth: 350.0,
                       technologies: [
                         'Flutter',
                         'Dart',

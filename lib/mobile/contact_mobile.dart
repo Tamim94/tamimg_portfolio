@@ -12,12 +12,14 @@ class ContactMobile extends StatefulWidget {
 }
 
 class _ContactMobileState extends State<ContactMobile> {
+  final _formKey = GlobalKey<FormState>();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneNumberController = TextEditingController();
   final _messageController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  bool _validate = false;
+
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
@@ -34,7 +36,8 @@ class _ContactMobileState extends State<ContactMobile> {
               child: Container(
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(width: 2.0, color: Colors.black)),
+                    border:
+                        Border.all(width: 2.0, color: Colors.deepOrangeAccent)),
                 child: Image.asset(
                     'assets/t-high-resolution-logo-transparent.png'),
               ),
@@ -114,7 +117,6 @@ class _ContactMobileState extends State<ContactMobile> {
               ),
             ),
             child: Form(
-              // Wrap your TextForm fields with Form
               key: _formKey,
               child: Wrap(
                 runSpacing: 20.0,
@@ -123,34 +125,81 @@ class _ContactMobileState extends State<ContactMobile> {
                 children: [
                   SansBold2("Contact me ", 35.0),
                   TextForm(
-                      text: "First name",
-                      Containerwidth: widthDevice / 1.4,
-                      hintText: "First name",
-                      controller: _firstNameController),
+                    text: "First name",
+                    containerWidth: widthDevice / 1.4,
+                    hintText: "First name",
+                    controller: _firstNameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'First name is required';
+                      }
+                      return null;
+                    },
+                  ),
                   TextForm(
-                      text: "Last name",
-                      Containerwidth: widthDevice / 1.4,
-                      hintText: "Last name",
-                      controller: _lastNameController),
+                    text: "Last name",
+                    containerWidth: widthDevice / 1.4,
+                    hintText: "Last name",
+                    controller: _lastNameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Last name is required';
+                      }
+                      return null;
+                    },
+                  ),
                   TextForm(
-                      text: "Num/Phone number",
-                      Containerwidth: widthDevice / 1.4,
-                      hintText: "Num/phone number ",
-                      controller: _phoneNumberController),
+                    text: "Num/Phone number",
+                    containerWidth: widthDevice / 1.4,
+                    hintText: "Num/phone number",
+                    controller: _phoneNumberController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Phone number is required';
+                      }
+                      if (!RegExp(
+                              r'^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$')
+                          .hasMatch(value)) {
+                        return 'Enter a valid phone number';
+                      }
+                      return null;
+                    },
+                  ),
                   TextForm(
-                      text: "Email",
-                      Containerwidth: widthDevice / 1.4,
-                      hintText: "Email",
-                      controller: _emailController),
+                    text: "Email",
+                    containerWidth: widthDevice / 1.4,
+                    hintText: "Email",
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Email is required';
+                      }
+                      if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+                          .hasMatch(value)) {
+                        return 'Enter a valid email address';
+                      }
+                      return null;
+                    },
+                  ),
                   TextForm(
                     text: "Message",
-                    Containerwidth: widthDevice / 1.4,
+                    containerWidth: widthDevice / 1.4,
                     hintText: "Message",
-                    maxLine: 10,
+                    maxLines: 10,
                     controller: _messageController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Message is required';
+                      }
+                      return null;
+                    },
                   ),
                   MaterialButton(
                     onPressed: () async {
+                      setState(() {
+                        _validate = true;
+                      });
+
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
 

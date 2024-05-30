@@ -37,7 +37,6 @@ class _AboutMobileState extends State<AboutMobile> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      // Wrap with SafeArea
       child: Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.black87,
@@ -56,7 +55,8 @@ class _AboutMobileState extends State<AboutMobile> {
                 child: Container(
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(width: 2.0, color: Colors.black)),
+                      border: Border.all(
+                          width: 2.0, color: Colors.deepOrangeAccent)),
                   child: Image.asset(
                       'assets/t-high-resolution-logo-transparent.png'),
                 ),
@@ -94,14 +94,6 @@ class _AboutMobileState extends State<AboutMobile> {
                       width: 35.0,
                     ),
                   ),
-                  /*  IconButton(
-                  onPressed: () async => await launch("http://twitter.com"),
-                  icon: SvgPicture.asset(
-                    "assets/twitter.svg",
-                    color: Colors.black,
-                    width: 35.0,
-                  ),
-                ),*/
                 ],
               )
             ],
@@ -113,7 +105,7 @@ class _AboutMobileState extends State<AboutMobile> {
               image: AssetImage(
                   'assets/blacksand-cat-han-W_5Eakb1598-unsplash.jpg'),
               colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.6), // Adjust opacity as needed
+                Colors.black.withOpacity(0.6),
                 BlendMode.darken,
               ),
               fit: BoxFit.cover,
@@ -155,8 +147,7 @@ class _AboutMobileState extends State<AboutMobile> {
                             color: Colors.white,
                             shadows: [
                               BoxShadow(
-                                color: Colors.deepOrangeAccent
-                                    .withOpacity(0.9), // Glow color
+                                color: Colors.deepOrangeAccent.withOpacity(0.9),
                                 spreadRadius: 7,
                                 blurRadius: 10,
                                 offset: Offset(0, 0),
@@ -171,24 +162,48 @@ class _AboutMobileState extends State<AboutMobile> {
                           "Actuellement en dernière année de Bachelor en développement et data  à l’ESTIAM, je me prépare à entamer un Master en Développement Web et Mobile dès octobre 2024.",
                           15.0),
                       SizedBox(height: 15.0),
-                      ElevatedButton(
-                        onPressed: () async {
-                          const url =
-                              'https://www.estiam.education/fr/formation-web-mobile-development-alternance';
-                          if (await canLaunch(url)) {
-                            await launch(url);
-                          } else {
-                            throw 'Could not launch $url';
-                          }
-                        },
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.purple),
-                        ),
-                        child: Text(
-                          'Brochure Estiam',
-                          style: TextStyle(color: Colors.white),
-                        ),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () async {
+                              const url =
+                                  'https://www.estiam.education/fr/formation-web-mobile-development-alternance';
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.purple),
+                            ),
+                            child: Text(
+                              'Brochure Estiam',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(width: 15.0),
+                          ElevatedButton(
+                            onPressed: () async {
+                              const url =
+                                  'https://drive.google.com/file/d/1ac5fqcCPZj8vQoEKz1f4YURKgHvhQni1/view?usp=sharing';
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.deepOrangeAccent),
+                            ),
+                            child: Text(
+                              'Mon CV',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: 15.0),
                       Column(
@@ -198,12 +213,10 @@ class _AboutMobileState extends State<AboutMobile> {
                             "Master\nDeveloppeur \nWeb & Mobile\n2024-2026",
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.deepOrangeAccent
-                                    .withOpacity(0.5), // Shadow color
-                                spreadRadius: 5, // Spread radius
-                                blurRadius: 7, // Blur radius
-                                offset:
-                                    Offset(0, 3), // Changes position of shadow
+                                color: Colors.deepOrangeAccent.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3),
                               ),
                             ],
                           ),
@@ -268,7 +281,6 @@ class _AboutMobileState extends State<AboutMobile> {
                     SansBold2("Web Development", 20.0),
                     SizedBox(height: 10.0),
                     Sans2(
-                      // Correct the syntax error here
                       "J’ai acquis une solide expérience grâce aux projets étudiants et professionnels dans le domaine du Web, notamment en utilisant les méthodes MVC et CRUD.",
                       15.0,
                     ),
@@ -286,7 +298,6 @@ class _AboutMobileState extends State<AboutMobile> {
                     SansBold2("back-end development", 20.0),
                     SizedBox(height: 10.0),
                     Sans2(
-                      // Correct the syntax error here
                       "J’ai également acquis une solide expérience grâce aux projets étudiants en back-end, notamment en utilisant les requêtes API avec Postman.",
                       15.0,
                     ),
@@ -305,7 +316,6 @@ class _AboutMobileState extends State<AboutMobile> {
                     SansBold2("DevOps", 20.0),
                     SizedBox(height: 10.0),
                     Sans2(
-                      // Correct the syntax error here
                       "J’ai acquis une solide expérience en DevOps et en conteneurisation grâce à des projets étudiants . Je possède egalement des certifications Cisco ",
                       15.0,
                     ),
@@ -323,10 +333,8 @@ class _AboutMobileState extends State<AboutMobile> {
                       child: Text(
                         'Cisco-Cybersecurity Essentials',
                         style: TextStyle(
-                          color: Colors
-                              .deepOrangeAccent, // This makes the text blue
-                          decoration: TextDecoration
-                              .underline, // This makes the text underlined
+                          color: Colors.deepOrangeAccent,
+                          decoration: TextDecoration.underline,
                         ),
                       ),
                     ),
@@ -344,10 +352,8 @@ class _AboutMobileState extends State<AboutMobile> {
                       child: Text(
                         'Cisco-IoT Fundamentals: Connecting Things',
                         style: TextStyle(
-                          color: Colors
-                              .deepOrangeAccent, // This makes the text blue
-                          decoration: TextDecoration
-                              .underline, // This makes the text underlined
+                          color: Colors.deepOrangeAccent,
+                          decoration: TextDecoration.underline,
                         ),
                       ),
                     ),
@@ -360,93 +366,4 @@ class _AboutMobileState extends State<AboutMobile> {
       ),
     );
   }
-//Back-end development
 }
-
-/*import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:tamimg_portfolio/components.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-class AboutMobile extends StatefulWidget {
-  const AboutMobile({super.key});
-
-  @override
-  State<AboutMobile> createState() => _AboutMobileState();
-}
-
-class _AboutMobileState extends State<AboutMobile> {
-  @override
-  Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        iconTheme: IconThemeData(size: 35.0, color: Colors.black),
-    ),
-    endDrawer: Drawer(
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-    DrawerHeader(
-    padding: EdgeInsets.only(bottom: 20.0),
-    child: Container(
-    decoration: BoxDecoration(
-    shape: BoxShape.circle,
-    border: Border.all(width: 2.0, color: Colors.black)),
-    child: Image.asset('t-high-resolution-logo-transparent.png'),
-    ),
-    ),
-    TabsMobile(
-    text: "Home",
-    route: ('/home'),
-    ),
-    SizedBox(height: 20.0),
-    TabsMobile(text: "Works", route: '/works'),
-    SizedBox(height: 20.0),
-    TabsMobile(text: "Blog", route: '/blog'),
-    SizedBox(height: 20.0),
-    TabsMobile(text: "Contact", route: '/contact'),
-    SizedBox(height: 20.0),
-    TabsMobile(text: "Works", route: '/works'),
-    SizedBox(
-    height: 40.0,
-    ),
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-    IconButton(
-    onPressed: () async => await launch("http:instagram.com"),
-    icon: SvgPicture.asset(
-    "assets/instagram2.svg",
-    color: Colors.black,
-    width: 35.0,
-    ),
-    ),
-    IconButton(
-    onPressed: () async => await launch("http:github.com"),
-    icon: SvgPicture.asset(
-    "assets/github.svg",
-    color: Colors.black,
-    width: 35.0,
-    ),
-    ),
-    IconButton(
-    onPressed: () async => await launch("http:twitter.com"),
-    icon: SvgPicture.asset(
-    "assets/twitter.svg",
-    color: Colors.black,
-    width: 35.0,
-    ),
-    ),
-    ],
-    )
-    ],
-    )),,
-    );
-  }
-}
-*/

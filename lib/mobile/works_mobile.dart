@@ -36,7 +36,8 @@ class _WorksMobileState extends State<WorksMobile> {
                 child: Container(
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(width: 2.0, color: Colors.black)),
+                      border: Border.all(
+                          width: 2.0, color: Colors.deepOrangeAccent)),
                   child: Image.asset(
                       'assets/t-high-resolution-logo-transparent.png'),
                 ),

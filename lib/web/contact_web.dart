@@ -32,6 +32,25 @@ class _ContactWebState extends State<ContactWeb> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black87,
+        iconTheme: IconThemeData(size: 25.0, color: Colors.white),
+        title: Row(
+          children: [
+            Spacer(flex: 3),
+            TabsWeb(title: "Home", route: '/'),
+            Spacer(),
+            TabsWeb(title: "About", route: "/about"),
+            Spacer(),
+            TabsWeb(title: "Experience", route: '/projet'),
+            Spacer(),
+            TabsWeb(title: "Experience Pro", route: "/works"),
+            Spacer(),
+            TabsWeb(title: 'Contact', route: '/contact'),
+            Spacer(),
+          ],
+        ),
+      ),
       drawer: Drawer(
         backgroundColor: Colors.black87,
         child: Column(
@@ -74,163 +93,183 @@ class _ContactWebState extends State<ContactWeb> {
         ),
       ),
       backgroundColor: Colors.black87,
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              expandedHeight: 500.0,
-              backgroundColor: Colors.black87,
-              iconTheme: IconThemeData(size: 25.0, color: Colors.white),
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  "assets/newyorkphone.jpg",
-                  fit: BoxFit.cover,
-                  filterQuality: FilterQuality.high,
-                  height: double.infinity,
-                ),
-              ),
-              title: Row(
-                children: [
-                  Spacer(flex: 3),
-                  TabsWeb(title: "Home", route: '/'),
-                  Spacer(),
-                  TabsWeb(title: "About", route: "/about"),
-                  Spacer(),
-                  TabsWeb(title: "Experience", route: '/projet'),
-                  Spacer(),
-                  TabsWeb(title: "Experience Pro", route: "/works"),
-                  Spacer(),
-                  TabsWeb(title: ' Contact', route: '/contact'),
-                  Spacer(),
-                ],
-              ),
-            ),
-          ];
-        },
-        body: SingleChildScrollView(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.5),
-              image: DecorationImage(
-                image: AssetImage(
-                    "assets/blackrocklou-batier-5EoWFa_Htdo-unsplash.jpg"),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.8),
-                  BlendMode.darken,
-                ),
-              ),
-            ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  SizedBox(height: 30.0),
-                  SansBold2("Contact me", 40.0),
-                  SizedBox(height: 20.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          TextForm(
-                            text: "First Name",
-                            Containerwidth: 350.0,
-                            hintText: "First name",
-                            controller: _firstNameController,
-                          ),
-                          SizedBox(height: 15.0),
-                          TextForm(
-                            text: "Last name",
-                            Containerwidth: 350.0,
-                            hintText: "Last name",
-                            controller: _lastNameController,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextForm(
-                            text: "Email",
-                            Containerwidth: 350.0,
-                            hintText: "Email",
-                            controller: _emailController,
-                          ),
-                          SizedBox(height: 15.0),
-                          TextForm(
-                            text: "Num/Phone Number",
-                            Containerwidth: 350.0,
-                            hintText: "Phone number",
-                            controller: _phoneNumberController,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10.0),
-                  TextForm(
-                    text: "Message",
-                    Containerwidth: withDevice / 1.6,
-                    hintText: "Message",
-                    maxLine: 10,
-                    controller: _messageController,
-                  ),
-                  SizedBox(height: 20.0),
-                  MaterialButton(
-                    onPressed: () async {
-                      print("Submit button pressed");
-                      if (_formKey.currentState!.validate()) {
-                        print("Form is valid");
-                        _formKey.currentState!.save();
-                        // Get the form data
-                        try {
-                          await FirebaseFirestore.instance
-                              .collection('contactMessages')
-                              .add({
-                            'firstName': _firstNameController.text,
-                            'lastName': _lastNameController.text,
-                            'email': _emailController.text,
-                            'phoneNumber': _phoneNumberController.text,
-                            'message': _messageController.text,
-                            'timestamp': FieldValue.serverTimestamp(),
-                          });
-                          print("Message sent successfully");
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text('Message sent successfully!')),
-                          );
-                          _firstNameController.clear();
-                          _lastNameController.clear();
-                          _emailController.clear();
-                          _phoneNumberController.clear();
-                          _messageController.clear();
-                        } catch (e) {
-                          print("Error sending message: $e");
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text('Error sending message: $e')),
-                          );
-                        }
-                      } else {
-                        print("Form is not valid");
-                      }
-                    },
-                    elevation: 20.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                  image: DecorationImage(
+                    image: AssetImage(
+                        "assets/blackrocklou-batier-5EoWFa_Htdo-unsplash.jpg"),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.8),
+                      BlendMode.darken,
                     ),
-                    height: 60.0,
-                    minWidth: 200.0,
-                    color: Colors.deepOrangeAccent,
-                    child: SansBold("Submit", 20.0),
                   ),
-                  SizedBox(height: 10.0),
-                ],
+                ),
+                child: Column(
+                  children: [
+                    Form(
+                      key: _formKey,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 30.0),
+                          SansBold2("Contact me", 40.0),
+                          SizedBox(height: 20.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  TextForm(
+                                    text: "First Name",
+                                    containerWidth: 350.0,
+                                    hintText: "First name",
+                                    controller: _firstNameController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'First name is required';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(height: 15.0),
+                                  TextForm(
+                                    text: "Last Name",
+                                    containerWidth: 350.0,
+                                    hintText: "Last name",
+                                    controller: _lastNameController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Last name is required';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextForm(
+                                    text: "Email",
+                                    containerWidth: 350.0,
+                                    hintText: "Email",
+                                    controller: _emailController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Email is required';
+                                      }
+                                      if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+                                          .hasMatch(value)) {
+                                        return 'Enter a valid email address';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(height: 15.0),
+                                  TextForm(
+                                    text: "Phone Number",
+                                    containerWidth: 350.0,
+                                    hintText: "Phone number",
+                                    controller: _phoneNumberController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Phone number is required';
+                                      }
+                                      if (!RegExp(
+                                              r'^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$')
+                                          .hasMatch(value)) {
+                                        return 'Enter a valid phone number';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10.0),
+                          TextForm(
+                            text: "Message",
+                            containerWidth: withDevice / 1.6,
+                            hintText: "Message",
+                            maxLines: 10,
+                            controller: _messageController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Message is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 20.0),
+                          MaterialButton(
+                            onPressed: () async {
+                              print("Submit button pressed");
+                              if (_formKey.currentState!.validate()) {
+                                print("Form is valid");
+                                _formKey.currentState!.save();
+                                // Get the form data
+                                try {
+                                  await FirebaseFirestore.instance
+                                      .collection('contactMessages')
+                                      .add({
+                                    'firstName': _firstNameController.text,
+                                    'lastName': _lastNameController.text,
+                                    'email': _emailController.text,
+                                    'phoneNumber': _phoneNumberController.text,
+                                    'message': _messageController.text,
+                                    'timestamp': FieldValue.serverTimestamp(),
+                                  });
+                                  print("Message sent successfully");
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'Message sent  Tamim will check soon !')),
+                                  );
+                                  _firstNameController.clear();
+                                  _lastNameController.clear();
+                                  _emailController.clear();
+                                  _phoneNumberController.clear();
+                                  _messageController.clear();
+                                } catch (e) {
+                                  print("Error sending message: $e");
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text('Error sending message: $e')),
+                                  );
+                                }
+                              } else {
+                                print("Form is not valid");
+                              }
+                            },
+                            elevation: 20.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            height: 60.0,
+                            minWidth: 200.0,
+                            color: Colors.deepOrangeAccent,
+                            child: SansBold("Submit", 20.0),
+                          ),
+                          SizedBox(height: 10.0),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -307,69 +307,75 @@ class Sans2 extends StatelessWidget {
   }
 }
 
-//form acve controller
+//form avec controller
 class TextForm extends StatelessWidget {
-  final text;
-  final Containerwidth;
-  final hintText;
-  final maxLine;
-  final Containerheight;
+  final String text;
+  final double? containerWidth;
+  final String hintText;
+  final int? maxLines;
+  final double? containerHeight;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
-  const TextForm(
-      {Key? key,
-      @required this.text,
-      this.Containerwidth,
-      this.Containerheight,
-      @required this.hintText,
-      this.maxLine,
-      this.controller})
-      : super(key: key);
+  const TextForm({
+    Key? key,
+    required this.text,
+    this.containerWidth,
+    this.containerHeight,
+    required this.hintText,
+    this.maxLines,
+    this.controller,
+    this.validator,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Sans2(text, 16.0),
-            SizedBox(height: 5),
-            SizedBox(
-              width: Containerwidth,
-              height: Containerheight,
-              child: TextFormField(
-                controller: controller,
-                maxLines: maxLine == null ? null : maxLine,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter $text'; // Display the error message
+        Text(
+          text,
+          style: GoogleFonts.openSans(fontSize: 16.0, color: Colors.white),
+        ),
+        SizedBox(height: 5),
+        SizedBox(
+          width: containerWidth,
+          height: containerHeight,
+          child: TextFormField(
+            controller: controller,
+            maxLines: maxLines ?? 1,
+            validator: validator ??
+                (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter $text';
                   }
                   return null;
                 },
-                cursorColor: Colors.white,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.deepOrangeAccent),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.deepOrangeAccent),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.deepOrangeAccent, width: 2),
-                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  ),
-                  hintText: hintText,
-                  hintStyle:
-                      GoogleFonts.poppins(fontSize: 20.0, color: Colors.white),
-                ),
+            cursorColor: Colors.white,
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.redAccent),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: Colors.deepOrangeAccent, width: 2),
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+              ),
+              hintText: hintText,
+              hintStyle:
+                  GoogleFonts.poppins(fontSize: 20.0, color: Colors.white),
             ),
-          ],
+          ),
         ),
       ],
     );

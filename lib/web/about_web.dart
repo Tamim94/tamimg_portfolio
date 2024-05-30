@@ -178,24 +178,50 @@ class _AboutWebState extends State<AboutWeb> {
                             """Bonjour je suis Tamim , 22 ans étudiant / developpeur Web & Mobile \nJe suis passionné par le développement cross-plateforme et mobile(surtout en Flutter). \nJ’aime également m’investir dans le design, la programmation de jeux, ainsi que le low code / no code,\nsurtout pour la facilité de développement d’applications cross-platform.\n Passionné par le monde anglophone, notamment dans les domaines de l’informatique, de la technologie et du divertissement,\n je maîtrise l’anglais avec aisance, ce qui me permet de suivre et d’interagir efficacement au sein de ces sphères internationales.  """,
                             15.0),
                         SizedBox(height: 15.0),
-                        ElevatedButton(
-                          onPressed: () async {
-                            const url =
-                                'https://www.estiam.education/fr/formation-web-mobile-development-alternance';
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.purple),
-                          ),
-                          child: Text(
-                            'Brochure Estiam',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () async {
+                                const url =
+                                    'https://www.estiam.education/fr/formation-web-mobile-development-alternance';
+                                if (await canLaunch(url)) {
+                                  await launch(url);
+                                } else {
+                                  throw 'Could not launch $url';
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.purple),
+                              ),
+                              child: Text(
+                                'Brochure Estiam',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            SizedBox(width: 15.0),
+                            ElevatedButton(
+                              onPressed: () async {
+                                const url =
+                                    'https://drive.google.com/file/d/1ac5fqcCPZj8vQoEKz1f4YURKgHvhQni1/view?usp=sharing';
+                                if (await canLaunch(url)) {
+                                  await launch(url);
+                                } else {
+                                  throw 'Could not launch $url';
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.deepOrangeAccent),
+                              ),
+                              child: Text(
+                                'Mon CV',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(height: 10.0),
                         Row(
@@ -210,11 +236,10 @@ class _AboutWebState extends State<AboutWeb> {
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.deepOrangeAccent
-                                        .withOpacity(0.5), // Shadow color
-                                    spreadRadius: 5, // Spread radius
-                                    blurRadius: 7, // Blur radius
-                                    offset: Offset(
-                                        0, 3), // Changes position of shadow
+                                        .withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: Offset(0, 3),
                                   ),
                                 ],
                               ),
@@ -224,10 +249,7 @@ class _AboutWebState extends State<AboutWeb> {
                                   style: TextStyle(
                                       fontSize: 15.0, color: Colors.white)),
                             ),
-
-                            Icon(Icons.arrow_back,
-                                color: Colors.white), // Add this line
-
+                            Icon(Icons.arrow_back, color: Colors.white),
                             Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -400,10 +422,8 @@ class _AboutWebState extends State<AboutWeb> {
                           child: Text(
                             'Cisco-Cybersecurity Essentials',
                             style: TextStyle(
-                              color: Colors
-                                  .deepOrangeAccent, // This makes the text blue
-                              decoration: TextDecoration
-                                  .underline, // This makes the text underlined
+                              color: Colors.deepOrangeAccent,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
@@ -421,10 +441,8 @@ class _AboutWebState extends State<AboutWeb> {
                           child: Text(
                             'Cisco-IoT Fundamentals: Connecting Things',
                             style: TextStyle(
-                              color: Colors
-                                  .deepOrangeAccent, // This makes the text blue
-                              decoration: TextDecoration
-                                  .underline, // This makes the text underlined
+                              color: Colors.deepOrangeAccent,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,6 +13,13 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingPageWebState extends State<LandingPageWeb> {
+  final _formKey = GlobalKey<FormState>(); // Form key
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     launchUrl(String url) async {
@@ -88,9 +96,9 @@ class _LandingPageWebState extends State<LandingPageWeb> {
           ],
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         iconTheme: IconThemeData(size: 25.6, color: Colors.white),
         title: Row(
@@ -138,9 +146,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                   BlendMode.darken,
                 ),
               ),
-              color: Colors
-                  .white, // Optional background color (useful if the image doesn't cover fully)
-              //   borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
               border: Border.all(
                 color: Colors.black,
                 width: 2.0,
@@ -149,7 +155,6 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             child: Stack(
               children: [
                 Center(
-                  // Center the content horizontally
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -215,7 +220,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                                 shadows: [
                                   BoxShadow(
                                     color: Colors.deepOrangeAccent
-                                        .withOpacity(0.9), // Glow color
+                                        .withOpacity(0.9),
                                     spreadRadius: 5,
                                     blurRadius: 10,
                                     offset: Offset(0, 0),
@@ -306,11 +311,10 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             height: heightDevice / 1.5,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                    "assets/blacksandp2adrien-olichon.jpg"), // Replace with your image
+                image: AssetImage("assets/blacksandp2adrien-olichon.jpg"),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.5), // Adjust opacity as needed
+                  Colors.black.withOpacity(0.5),
                   BlendMode.darken,
                 ),
               ),
@@ -326,18 +330,16 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      // Add the border
-                      color: Colors.deepOrangeAccent, // Border color
+                      color: Colors.deepOrangeAccent,
                       width: 4.0,
                     ),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.deepOrangeAccent
-                            .withOpacity(0.5), // Shadow color
-                        spreadRadius: 5, // Spread radius
-                        blurRadius: 7, // Blur radius
-                        offset: Offset(0, 3), // Changes position of shadow
+                        color: Colors.deepOrangeAccent.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
                       ),
                     ],
                   ),
@@ -579,78 +581,164 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                 width: 2.0,
               ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text('Contact me ',
-                    style: TextStyle(
-                      fontSize: 40,
-                      color: Colors.white,
-                      shadows: [
-                        BoxShadow(
-                          color: Colors.deepOrangeAccent, // Glow color
-                          spreadRadius: 7,
-                          blurRadius: 10,
-                          offset: Offset(0, 0),
-                        ),
-                      ],
-                    )),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        TextForm(
-                          Containerwidth: 350,
-                          text: "First name",
-                          hintText: "Write your first name",
-                        ),
-                        SizedBox(height: 15),
-                        TextForm(
-                          Containerwidth: 350,
-                          text: "Email",
-                          hintText: "Write your email",
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        TextForm(
-                          Containerwidth: 350,
-                          text: "Last name",
-                          hintText: "Please type your last name",
-                        ),
-                        SizedBox(height: 15),
-                        TextForm(
-                          Containerwidth: 350,
-                          text: "Number",
-                          hintText: "please write your  number",
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                TextForm(
-                  text: "Message",
-                  Containerwidth: widthDevice / 1.5,
-                  hintText: "Please type your message",
-                  maxLine: 10,
-                ),
-                MaterialButton(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text('Contact me ',
+                      style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.white,
+                          shadows: [
+                            BoxShadow(
+                                color: Colors.deepOrangeAccent,
+                                spreadRadius: 7,
+                                blurRadius: 10,
+                                offset: Offset(0, 0))
+                          ])),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          TextForm(
+                            controller: _firstNameController,
+                            containerWidth: 350,
+                            text: "First name",
+                            hintText: "Write your first name",
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'First name is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 15),
+                          TextForm(
+                            controller: _emailController,
+                            containerWidth: 350,
+                            text: "Email",
+                            hintText: "Write your email",
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Email is required';
+                              }
+                              if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+                                  .hasMatch(value)) {
+                                return 'Enter a valid email address';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          TextForm(
+                            controller: _lastNameController,
+                            containerWidth: 350,
+                            text: "Last name",
+                            hintText: "Please type your last name",
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Last name is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 15),
+                          TextForm(
+                            controller: _phoneNumberController,
+                            containerWidth: 350,
+                            text: "Number",
+                            hintText: "please write your  number",
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Phone number is required';
+                              }
+                              if (!RegExp(
+                                      r'^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$')
+                                  .hasMatch(value)) {
+                                return 'Enter a valid phone number';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  TextForm(
+                    controller: _messageController,
+                    text: "Message",
+                    containerWidth: widthDevice / 1.5,
+                    hintText: "Please type your message",
+                    maxLines: 10,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Message is required';
+                      }
+                      return null;
+                    },
+                  ),
+                  MaterialButton(
                     elevation: 20.0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
+                        borderRadius: BorderRadius.circular(10.0)),
                     height: 60,
                     minWidth: 200.0,
                     color: Colors.deepOrangeAccent,
                     child: Text('Submit', style: TextStyle(fontSize: 20.0)),
-                    onPressed: () {})
-              ],
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        try {
+                          await FirebaseFirestore.instance
+                              .collection('contactMessages')
+                              .add({
+                            'firstName': _firstNameController.text,
+                            'lastName': _lastNameController.text,
+                            'email': _emailController.text,
+                            'phoneNumber': _phoneNumberController.text,
+                            'message': _messageController.text,
+                            'timestamp': FieldValue.serverTimestamp(),
+                          });
+
+                          // (Optional) Send email to yourself using the method described previously
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text('Message sent successfully!')),
+                          );
+                          // Clear the form after submission
+                          _formKey.currentState!.reset();
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    'Error sending message (eather you discovered a bug or itson my part $e')),
+                          );
+                        }
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // Dispose controllers
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _phoneNumberController.dispose();
+    _messageController.dispose();
+    super.dispose();
   }
 }

@@ -124,7 +124,7 @@ class _ProjetWebState extends State<ProjetWeb> {
                 alignment: Alignment.center,
                 children: [
                   Image.asset(
-                    "assets/new_york2.webp",
+                    "assets/new-york.jpg",
                     width: double.infinity, // Full width
                     height: 400,
                     fit: BoxFit.cover,
@@ -219,6 +219,10 @@ class _ProjetWebState extends State<ProjetWeb> {
                             description:
                                 "J'ai créé ce portfolio pour développer mes compétences en dev  cross-plateform avec flutter  et pour présenter mes projets et mes compétences",
                             imagePath: 'assets/project2.png',
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
+                            imageHeight: 200.0,
+                            imageWidth: 350.0,
                             technologies: [
                               'Flutter',
                               'Dart',
